@@ -27,7 +27,7 @@ const chooseRecipe = function(bakeryA, bakeryB, recipes) {
     let isInStockBakeryA = [];
     let isInStockBakeryB = [];
     
-    // Loop through the ingredients and update the sttus of whether it is in stock
+    // Loop through the ingredients and update the status of whether it is in stock
     // or not at each bakery
     recipe.ingredients.forEach( (ingredient) => {
       isInStockBakeryA.push( bakeryA.indexOf(ingredient) !== -1)
@@ -50,6 +50,15 @@ const chooseRecipe = function(bakeryA, bakeryB, recipes) {
   return possibleRecipeNames.length > 0 ? possibleRecipeNames[possibleRecipeNames.length - 1] : false;
   
   // What actually should be the return statement
-  // return possibleRecipeNames.length > 0 ? possibleRecipeNames : false;
+  // return possibleRecipeNames.length > 0 ? possibleRecipeNames[0] : false;
   
+}
+
+// Filter basic solution
+
+const chooseRecipe = function(bakeryA, bakeryB, recipes) {
+  recipes = recipes.filter( recipe => {
+    return (bakeryA.includes(recipe.ingredients[0]) || bakeryA.includes(recipe.ingredients[1]))    &&  (bakeryB.includes(recipe.ingredients[0]) || bakeryB.includes(recipe.ingredients[1]))
+  })
+  return recipes[0].name
 }
